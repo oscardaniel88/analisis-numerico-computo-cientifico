@@ -23,6 +23,13 @@ Semana 3
 * Implementacion de arquitectura distribuida de MPI utilizando Docker, Swarm y Compose en AWS
 * Implementacion de codigo de multiplicacion cd matrices en MPI
 
+#Entrega Final
+* Solución montada en AWS [Liga al codigo](codigo/Arquitectura_AWS)
+
+* Solución en Docker Swarm [Liga al codigo](codigo/Arquitectura_Docker)
+
+* Reporte [Liga al Reporte](trabajo_escrito/Final_MNO_mmult-2.pdf)
+
 ## Referencias del proyecto:
 
 * Una descripción de una implementación sencilla de la multiplicación de matrices en paralelo utilizando una arquitectura de anillo lo pueden encontrar en la sección 2 de este [paper](https://www.researchgate.net/publication/2685119_An_Analysis_Of_Parallel_Implementations_Of_The_Block-Jacobi_Algorithm_For_Computing_The_Svd)
