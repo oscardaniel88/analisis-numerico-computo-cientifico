@@ -23,10 +23,12 @@ Semana 3
 * Implementacion de arquitectura distribuida de MPI utilizando Docker, Swarm y Compose en AWS
 * Implementacion de codigo de multiplicacion cd matrices en MPI
 
-#Entrega Final
+Entrega Final
 * Solución montada en AWS [Liga al codigo](codigo/Arquitectura_AWS)
 
 * Solución en Docker Swarm [Liga al codigo](codigo/Arquitectura_Docker)
+
+* Comentarios a la implementacion de mpimm.c [Liga a los comentarios](codigo/Arquitectura_AWS/Implementacion_mpimm.md)
 
 * Reporte [Liga al Reporte](trabajo_escrito/Final_MNO_mmult-2.pdf)
 
