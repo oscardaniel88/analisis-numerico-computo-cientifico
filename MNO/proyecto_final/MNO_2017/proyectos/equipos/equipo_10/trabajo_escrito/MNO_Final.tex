@@ -11,6 +11,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[round]{natbib}
 \usepackage{graphicx}
+\graphicspath{ {Images/} }
 
 \usepackage{sectsty}
 \allsectionsfont{\usefont{OT1}{phv}{b}{n}}
@@ -31,7 +32,7 @@
 \renewcommand{\footrulewidth}{0.4pt}
 
 \usepackage{lettrine}
-\newcommand{\initial}[1]{ 	
+\newcommand{\initial}[1]{   
 \lettrine[lines=3,lhang=0.3,nindent=0em]{
 \color{DarkGoldenrod}
 {\textsf{#1}}}{}}
@@ -42,20 +43,20 @@
 
 \pretitle{\vspace{-30pt} \HorRule \fontsize{50}{50} \usefont{OT1}{phv}{b}{n} \color{DarkRed} \selectfont}
 
-\title{\Huge Ambiente distribuido de MPI en AWS para multiplicación de matrices} 		
+\title{\Huge Ambiente distribuido de MPI en AWS para multiplicación de matrices}        
 
-\author{	Maximiliano Alvarez
-			\& 
-			Daniel Camarena }
+\author{    Maximiliano Alvarez
+            \& 
+            Daniel Camarena }
 
 \posttitle{\par\vskip 0.5em}
 
 \preauthor{\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl} \color{DarkRed}}
 
 \postauthor{\footnotesize 
-				\usefont{OT1}{phv}{m}{sl} 
-				\color{Black}
-				ITAM
+                \usefont{OT1}{phv}{m}{sl} 
+                \color{Black}
+                ITAM
 
 \par\HorRule}
 
@@ -168,7 +169,7 @@ El programa \textit{mpimm.c} consta de tres partes principales:
 
 \begin{enumerate}
     \item Inicialización y declaración de variables.
-    \item Inicialización de funciones propias de \textit{openMPI}, específicamente las funciones \textit{send} y \textit{recieve}.
+    \item Inicialización de funciones propias de \textit{openMPI}, específicamente las funciones \textit{send} y \textit{receive}.
     \item Distribuición de datos para paralelizar el cálculo de la matriz $C = A * B$.
 \end{enumerate}
 
@@ -216,6 +217,23 @@ Una vez compilado el programa en todos los nodos, se puede ejecutar desde el nod
 \begin{itemize}
     \item mpirun --prefix /opt/openmpi-2.0.2/ -n 3 -H master,nodo1,nodo2 mpimm.out
 \end{itemize}
+
+\section{Resultados}
+
+Como resultados de este ejercicio obtuvimos un cluster de servidores Ubuntu 14.04 con la librería de openMP completamente instalada y funcionando. Se ejecutaron varias pruebas corriendo el programa para matrices cuadradas y matrices rectangulares teniendo un performance similar al ejecutar en modo distribuido y semi distribuido. Por razones de falta de tiempo no fue posible hacer comparaciones de tiempo de ejecución entre una versión secuencial de este algoritmo y la versión en paralelo, sin embargo el performance esperado es el presentado en las siguientes gráficas:
+
+\includegraphics[width=10cm, height=4cm]{Parallel_vs_Seq}
+
+\includegraphics[width=10cm, height=4cm]{Parallel_performance}
+
+El hecho de contar con un servicio como el de \textit{AWS} nos dió las siguientes ventajas:
+
+\begin{enumerate}
+    \item Dado que no estamos sujetos a las limitaciones del hardware de nuestra máquina local, es posible escalar indefinidamente este cluster.
+    \item Es una alternativa barata, dados los costos del uso de máquinas de AWS.
+\end{enumerate}
+
+A pesar de que cada uno de los nodos \textit{workers} recibe a las matrices $A$ y $B$ completas, los cálculos asociados con la multiplicación de matrices se distribuyen de manera eficiente. Esto implica que, para matrices grandes, es posible observar mejoras en el desempeño de la multiplicación de matrices con nuestro algoritmo sobre una ejecución secuencial del mismo proceso.
 
 \section{Conclusiones}
 
